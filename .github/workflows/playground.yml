@@ -1,9 +1,15 @@
+name: playground
 on: push
 
 jobs:
-  build:
+  foo:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo ${{ github.ref }}
+    - run: echo ${{ github.ref }}
+
+  bar:
+    if: github.ref == 'refs/heads/master'
+    needs: foo
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo ${{ github.ref }}

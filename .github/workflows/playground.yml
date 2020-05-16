@@ -5,7 +5,7 @@ jobs:
   foo:
     runs-on: ubuntu-latest
     steps:
-    - run: echo ${{ github.ref }} == '/ref/head/master'
+    - run: test ${{ github.ref }} = '/ref/head/master' && echo "top" || echo "flop"
 
   bar:
     if: github.ref == 'refs/heads/master'
